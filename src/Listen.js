@@ -1,16 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function Listen() {
-  const listener = useRef(null);
-
   useEffect(() => {
-    listener.current = () => {
+    const listener = () => {
       console.log("I have been resized");
     };
-    window.addEventListener("resize", listener.current);
+    window.addEventListener("resize", listener);
 
     return () => {
-      window.removeEventListener("resize", listener.current);
+      window.removeEventListener("resize", listener);
     };
   }, []);
 
