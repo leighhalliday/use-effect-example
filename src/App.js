@@ -4,7 +4,8 @@ import Name from "./Name";
 import Mounted from "./Mounted";
 import Counter from "./Counter";
 import Fetcher from "./Fetcher";
-import FetcherCancel from "./FetcherCancel";
+import AxiosCancel from "./AxiosCancel";
+import FetchCancel from "./FetchCancel";
 
 function App() {
   const [listen, setListen] = useState(false);
@@ -13,7 +14,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setMounted(false);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (
@@ -37,15 +38,17 @@ function App() {
       {listen ? <Listen /> : null}
       <hr />
 
-      <Fetcher url="https://reqres.in/api/users/2?delay=2" />
+      <Fetcher url="https://reqres.in/api/users/1?delay=2" />
       <hr />
 
-      {mounted ? (
+      {mounted && (
         <>
-          <FetcherCancel url="https://reqres.in/api/users/2?delay=2" />
+          <AxiosCancel url="https://reqres.in/api/users/2?delay=2" />
+          <hr />
+          <FetchCancel url="https://reqres.in/api/users/3?delay=2" />
           <hr />
         </>
-      ) : null}
+      )}
     </div>
   );
 }
